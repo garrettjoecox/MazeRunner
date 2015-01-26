@@ -1,0 +1,11 @@
+{
+  "manifest_version": 2,
+
+  "name": "NewTab Clock",
+  "description": "This extension replaces the New Tab page with a nice clock.",
+  "version": "1.0",
+
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
+  }
+}
