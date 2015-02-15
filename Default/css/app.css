@@ -1,20 +1,46 @@
-html, body {
-    height: 100%;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    background: url("../backgrounds/1.png") center center no-repeat;;
-    background-size: cover;
-    position: relative;
-}
-.center {
-    position: absolute;
-}
 .clock {
-    font-size: 160px;
-    color: white;
-    text-align: center;
-    letter-spacing: -5px;
-    text-shadow: 0 10px 15px rgba(0,0,0,0.3);
-    font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-shadow: 0 10px 15px rgba(0,0,0,0.3);
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: -10px;
+  text-align: center;
+  font-size: 160px;
+  color: white;
+  opacity: 0;
+  flex: 1;
+}
+
+.bg {
+  background: url('../backgrounds/1.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  align-items: center;
+  position: absolute;
+  display: flex;
+  z-index: -100;
+  opacity: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+}
+
+/* Declaring Animation*/
+@-webkit-keyframes fade-in {
+  75%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Class to animate */
+.fadein {
+  -webkit-animation-timing-function: ease-in;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-name: fade-in;
+  -webkit-animation-duration: 1s;
+}
+
+/* Class to add perm opacity */
+.visible {
+  opacity: 1;
 }
