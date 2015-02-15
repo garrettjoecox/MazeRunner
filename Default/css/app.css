@@ -1,16 +1,15 @@
 .clock {
   text-shadow: 0 10px 15px rgba(0,0,0,0.3);
   font-family: 'Roboto', sans-serif;
-  letter-spacing: -10px;
   text-align: center;
-  font-size: 160px;
+  font-size: 18vw;
   color: white;
   opacity: 0;
   flex: 1;
 }
 
 .bg {
-  background: url('../backgrounds/1.jpg') no-repeat center center fixed;
+  background: no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
