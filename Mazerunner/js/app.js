@@ -8,20 +8,24 @@ var options = {
     // Modify me to your liking!
 
     // Grid size
-    grid: 20,
+    grid: 25,
     // Canvas size
     height: window.innerHeight,
     width: window.innerWidth,
     // Speed of new lines
     speed: 1,
     // Boolean for random color generator
-    randomColor: true,
+    randomColor: false,
     // Minimum brightness of random colors
-    randomBrightness: 0,
+    randomBrightness: 100,
     // Color of lines when random is disabled (RGB or Hex)
-    lineColor: '#777',
+    lineColor: '#FFF',
     // Opacity of lines (0 to 1)
-    lineOpacity: '0.5',
+    lineOpacity: '0.25',
+    // Boolean for line fade
+    lineFade: true,
+    // Time before line fades
+    lineFadeDelay: 10000,
     // Background color
     bgColor: '#222'
 
@@ -91,6 +95,7 @@ function populate(){
 
 // Adds any new strokes in storage to canvas
 function update(data) {
+    var opac = options.lineFade ? 0 : 1;
     var line = svg.selectAll("line")
         .data(data);
     line.enter().append("line")
@@ -100,7 +105,10 @@ function update(data) {
         .attr("y2", function(d){ return d.y2; })
         .style("stroke", options.lineColor)
         .style("stroke-width", "1")
-        .style("stroke-opacity", options.lineOpacity);
+        .style("stroke-opacity", options.lineOpacity)
+        .transition()
+            .delay(options.lineFadeDelay)
+            .style("stroke-opacity", opac);
     line.exit().remove();
 
 }
