@@ -1,13 +1,3 @@
-.clock {
-  text-shadow: 0 10px 15px rgba(0,0,0,0.3);
-  font-family: 'Roboto', sans-serif;
-  text-align: center;
-  font-size: 18vw;
-  color: white;
-  opacity: 0;
-  flex: 1;
-}
-
 .bg {
   background: no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -23,6 +13,17 @@
   right: 0;
   left: 0;
   top: 0;
+}
+
+.clock {
+  text-shadow: 0 10px 15px rgba(0,0,0,0.3);
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  font-weight: 700;
+  font-size: 18vw;
+  color: white;
+  opacity: 0;
+  flex: 1;
 }
 
 /* Declaring Animation*/
