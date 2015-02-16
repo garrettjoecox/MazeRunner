@@ -9,6 +9,8 @@ var options = {
 
     // Grid size
     grid: 25,
+
+    diagonalLines: true,
     // Canvas size
     height: window.innerHeight,
     width: window.innerWidth,
@@ -25,7 +27,7 @@ var options = {
     // Boolean for line fade
     lineFade: true,
     // Time before line fades
-    lineFadeDelay: 10000,
+    lineFadeDelay: 5000,
     // Background color
     bgColor: '#222'
 
@@ -35,7 +37,11 @@ var directions = {
     0: [0, options.grid],
     1: [options.grid, 0],
     2: [0, -options.grid],
-    3: [-options.grid, 0]
+    3: [-options.grid, 0],
+    4: [options.grid, options.grid],
+    5: [-options.grid, -options.grid],
+    6: [options.grid, -options.grid],
+    7: [-options.grid, options.grid]
 };
 
 
@@ -83,7 +89,8 @@ function add(x1, y1, x2, y2) {
 
 // Makes a new stroke to add
 function populate(){
-    var ran = Math.floor(Math.random()*4);
+    var thing = options.diagonalLines ? 8 : 4;
+    var ran = Math.floor(Math.random()*thing);
     var dir = directions[ran];
     var newX = currentX + dir[0];
     var newY = currentY + dir[1];
