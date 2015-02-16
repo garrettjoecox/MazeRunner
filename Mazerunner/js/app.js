@@ -31,6 +31,7 @@ var svg = d3.select("svg")
 setInterval(function(){
     populate();
     update(storage);
+    setTime();
 }, options.speed);
 
 
@@ -72,4 +73,10 @@ function update(data) {
         .style("stroke-width", "1")
         .style("stroke-opacity", "0.05");
     line.exit().remove();
+};
+
+// Updates clock
+function setTime(){
+    var time = moment(Date.now()).format('h:mm');
+    d3.select(".clock").text(time);
 };
