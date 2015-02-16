@@ -10,13 +10,13 @@ var options = {
     speed: 1,
     lineColor: '#FFF',
     bgColor: '#222'
-}
+};
 var directions = {
     0: [0, options.grid],
     1: [options.grid, 0],
     2: [0, -options.grid],
     3: [-options.grid, 0]
-}
+};
 
 
 /* Logic */
@@ -46,7 +46,7 @@ function add(x1, y1, x2, y2) {
         'x2': x2,
         'y2': y2
     });
-};
+}
 
 // Makes a new stroke to add
 function populate(){
@@ -58,25 +58,25 @@ function populate(){
     add(currentX, currentY, newX, newY);
     currentX = newX;
     currentY = newY;
-};
+}
 
 // Adds any new strokes in storage to canvas
 function update(data) {
     var line = svg.selectAll("line")
         .data(data);
     line.enter().append("line")
-        .attr("x1", function(d){return d.x1})
-        .attr("y1", function(d){return d.y1})
-        .attr("x2", function(d){return d.x2})
-        .attr("y2", function(d){return d.y2})
+        .attr("x1", function(d){ return d.x1; })
+        .attr("y1", function(d){ return d.y1; })
+        .attr("x2", function(d){ return d.x2; })
+        .attr("y2", function(d){ return d.y2; })
         .style("stroke",options.lineColor)
         .style("stroke-width", "1")
         .style("stroke-opacity", "0.05");
     line.exit().remove();
-};
+}
 
 // Updates clock
 function setTime(){
     var time = moment(Date.now()).format('h:mm');
     d3.select(".clock").text(time);
-};
+}
