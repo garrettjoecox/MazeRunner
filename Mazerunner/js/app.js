@@ -16,7 +16,7 @@ var options = {
     // Minimum brightness of random colors
     randomBrightness: 100,
     // Color of lines when random is disabled (RGB or Hex)
-    lineColor: 'red',
+    lineColor: 'white',
     // Opacity of lines (0 to 1)
     lineOpacity: '1',
     // Boolean for line fade
@@ -99,7 +99,7 @@ function populate(){
 
 // Adds any new strokes in storage to canvas
 function update(data) {
-    var opac = options.lineFade ? 0 : 1;
+    var opac = options.lineFade ? 0 : options.lineOpacity;
     var line = svg.selectAll("line")
         .data(data);
     line.enter().append("line")
