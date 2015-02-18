@@ -1,38 +1,35 @@
 /* Variables */
-
-var currentY = window.innerHeight/2;
-var currentX = window.innerWidth/2;
-var storage = [];
 var options = {
-
     // Modify me to your liking!
 
     // Grid size
     grid: 25,
-
+    // Toggles diagonal line drawing
     diagonalLines: true,
     // Canvas size
     height: window.innerHeight,
     width: window.innerWidth,
     // Speed of new lines
     speed: 1,
-    // Boolean for random color generator
-    randomColor: false,
+    // Toggles random line colors
+    randomColor: true,
     // Minimum brightness of random colors
     randomBrightness: 100,
     // Color of lines when random is disabled (RGB or Hex)
-    lineColor: '#FFF',
+    lineColor: 'red',
     // Opacity of lines (0 to 1)
-    lineOpacity: '0.25',
+    lineOpacity: '1',
     // Boolean for line fade
     lineFade: true,
     // Time before line fades
-    lineFadeDelay: 5000,
+    lineFadeDelay: 1000,
     // Background color
     bgColor: '#222'
-
-
 };
+
+var currentY = options.height/2;
+var currentX = options.width/2;
+var storage = [];
 var directions = {
     0: [0, options.grid],
     1: [options.grid, 0],
