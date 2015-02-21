@@ -7,6 +7,10 @@ html, body {
   margin: 0;
 }
 
+svg {
+  position: absolute;
+}
+
 .holder {
   align-items: center;
   position: absolute;
@@ -23,6 +27,7 @@ html, body {
   text-align: center;
   font-weight: 700;
   font-size: 15vw;
+  z-index: 1000;
   color: white;
   flex: 1;
 }

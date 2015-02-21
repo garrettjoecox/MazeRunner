@@ -14,6 +14,9 @@ function Line(options){
         6: [options.grid, -options.grid],
         7: [-options.grid, options.grid]
     };
+    this.svg = d3.select('.svg-holder').append('svg')
+        .attr('height', options.height+'px')
+        .attr('width', options.width+'px');
 }
 
 Line.prototype.draw = function(svg){
@@ -23,7 +26,7 @@ Line.prototype.draw = function(svg){
         b = this.options.randomBrightness + Math.floor(Math.random()*(256 - this.options.randomBrightness));
         this.options.lineColor = "rgb(" + r + "," + g + "," + b + ")";
     }
-    var line = svg.selectAll('line')
+    var line = this.svg.selectAll('line')
         .data(this.storage, function(d){ return d.id; });
     line.enter().append('line')
         .attr('x1', function(d){ return d.x1; })

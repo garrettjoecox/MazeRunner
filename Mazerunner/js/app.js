@@ -19,21 +19,24 @@ var options = {
     // Boolean for line fade
     lineFade: true,
     // Amount of lines before fade
-    lineFadeDelay: 50,
-    // Background color
-    bgColor: '#222'
+    lineFadeDelay: 25
 };
 
-var svg = d3.select('svg')
-    .attr('height', options.height+'px')
-    .attr('width', options.width+'px')
-    .style('background', options.bgColor);
 
-var line1 = new Line(options);
+// The commented out lines below is how to create more instances of lines
+// You can even make seperate options objects and pass in different options for each line
+
+// var options2 = Object.create(options);
+// options2.diagonalLines = false;
+
+var line = new Line(options);
+// var line2 = new Line(options2);
 
 setInterval(function(){
-    line1.populate();
-    line1.draw(svg);
+    line.populate();
+    line.draw();
+    // line2.populate();
+    // line2.draw();
     setTime();
 }, options.speed);
 
