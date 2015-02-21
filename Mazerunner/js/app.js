@@ -9,25 +9,26 @@ var options = {
     // Speed of new lines
     speed: 1,
     // Toggles random line colors
-    randomColor: true,
+    randomColor: false,
     // Minimum brightness of random colors
     randomBrightness: 100,
     // Color of lines when random is disabled (RGB or Hex)
     lineColor: 'white',
     // Opacity of lines (0 to 1)
-    lineOpacity: '1',
+    lineOpacity: '0.5',
     // Boolean for line fade
     lineFade: true,
     // Amount of lines before fade
-    lineFadeDelay: 25
+    lineFadeDelay: 100
 };
-
 
 // The commented out lines below is how to create more instances of lines
 // You can even make seperate options objects and pass in different options for each line
 
 // var options2 = Object.create(options);
 // options2.diagonalLines = false;
+// options2.randomColor = true;
+// options2.lineOpacity = '1';
 
 var line = new Line(options);
 // var line2 = new Line(options2);

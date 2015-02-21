@@ -14,7 +14,7 @@ function Line(options){
         6: [options.grid, -options.grid],
         7: [-options.grid, options.grid]
     };
-    this.svg = d3.select('.svg-holder').append('svg')
+    this.svg = d3.select('body').append('svg')
         .attr('height', options.height+'px')
         .attr('width', options.width+'px');
 }
@@ -35,7 +35,7 @@ Line.prototype.draw = function(svg){
         .attr('y2', function(d){ return d.y2; })
         .style('stroke', this.options.lineColor)
         .style('stroke-width', '1')
-        .style('stroke-opacity', options.lineOpacity);
+        .style('stroke-opacity', this.options.lineOpacity);
     line.exit().remove();
 };
 
