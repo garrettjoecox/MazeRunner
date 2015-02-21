@@ -9,13 +9,13 @@ var options = {
     // Speed of new lines
     speed: 1,
     // Toggles random line colors
-    randomColor: false,
+    randomColor: true,
     // Minimum brightness of random colors
     randomBrightness: 100,
     // Color of lines when random is disabled (RGB or Hex)
     lineColor: 'white',
     // Opacity of lines (0 to 1)
-    lineOpacity: '0.5',
+    lineOpacity: '1',
     // Boolean for line fade
     lineFade: true,
     // Amount of lines before fade
@@ -27,8 +27,9 @@ var options = {
 
 // var options2 = Object.create(options);
 // options2.diagonalLines = false;
-// options2.randomColor = true;
-// options2.lineOpacity = '1';
+// options2.randomColor = false;
+// options2.lineColor = 'white';
+// options2.lineOpacity = '0.5';
 
 var line = new Line(options);
 // var line2 = new Line(options2);
