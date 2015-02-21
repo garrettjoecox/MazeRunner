@@ -21,8 +21,8 @@ var options = {
     lineOpacity: '1',
     // Boolean for line fade
     lineFade: true,
-    // Time before line fades
-    lineFadeDelay: 1000,
+    // Amount of lines before fade
+    lineFadeDelay: 100,
     // Background color
     bgColor: '#222'
 };
@@ -30,6 +30,7 @@ var options = {
 var currentY = options.height/2;
 var currentX = options.width/2;
 var storage = [];
+var lineCount = 0;
 var directions = {
     0: [0, options.grid],
     1: [options.grid, 0],
@@ -56,6 +57,9 @@ setInterval(function(){
     populate();
     update(storage);
     setTime();
+    if (storage.length > options.lineFadeDelay && options.lineFade){
+        storage.shift();
+    }
 }, options.speed);
 
 
@@ -77,11 +81,13 @@ function randomColor(){
 function add(x1, y1, x2, y2) {
     if (arguments.length < 4) return;
     storage.push({
+        'count': lineCount,
         'x1': x1,
         'y1': y1,
         'x2': x2,
         'y2': y2
     });
+    lineCount++;
 }
 
 // Makes a new stroke to add
@@ -99,9 +105,9 @@ function populate(){
 
 // Adds any new strokes in storage to canvas
 function update(data) {
-    var opac = options.lineFade ? 0 : options.lineOpacity;
     var line = svg.selectAll("line")
-        .data(data);
+        .data(data, function(thing){return thing.count;});
+
     line.enter().append("line")
         .attr("x1", function(d){ return d.x1; })
         .attr("y1", function(d){ return d.y1; })
@@ -109,12 +115,9 @@ function update(data) {
         .attr("y2", function(d){ return d.y2; })
         .style("stroke", options.lineColor)
         .style("stroke-width", "1")
-        .style("stroke-opacity", options.lineOpacity)
-        .transition()
-            .delay(options.lineFadeDelay)
-            .style("stroke-opacity", opac);
-    line.exit().remove();
+        .style("stroke-opacity", options.lineOpacity);
 
+    line.exit().remove();
 }
 
 // Updates clock
