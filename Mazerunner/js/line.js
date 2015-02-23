@@ -1,22 +1,28 @@
 function Line(options){
     this.options = options;
-    this.currentX = options.height/2;
-    this.currentY = options.width/2;
+    this.currentX = window.innerWidth/2;
+    this.currentY = window.innerHeight/2;
     this.storage = [];
     this.lineCount = 0;
     this.directions = {
-        0: [0, options.grid],
-        1: [options.grid, 0],
-        2: [0, -options.grid],
-        3: [-options.grid, 0],
-        4: [options.grid, options.grid],
-        5: [-options.grid, -options.grid],
-        6: [options.grid, -options.grid],
-        7: [-options.grid, options.grid]
+        0: [0, this.options.lineLength],
+        1: [this.options.lineLength, 0],
+        2: [0, -this.options.lineLength],
+        3: [-this.options.lineLength, 0],
+        4: [this.options.lineLength, this.options.lineLength],
+        5: [-this.options.lineLength, -this.options.lineLength],
+        6: [this.options.lineLength, -this.options.lineLength],
+        7: [-this.options.lineLength, this.options.lineLength]
     };
     this.svg = d3.select('body').append('svg')
-        .attr('height', options.height+'px')
-        .attr('width', options.width+'px');
+        .attr('height', window.innerHeight+'px')
+        .attr('width', window.innerWidth+'px');
+
+    var line = this;
+    setInterval(function(){
+        line.populate();
+        line.draw();
+    },this.options.speed);
 }
 
 Line.prototype.draw = function(svg){
@@ -40,11 +46,12 @@ Line.prototype.draw = function(svg){
 };
 
 Line.prototype.populate = function(){
-    var type = this.options.diagonalLines ? 8 : 4;
-    var rand = this.directions[Math.floor(Math.random()*type)];
+    var rand = this.directions[Math.floor(Math.random()*4)];
+    if (this.options.grid === 'both') rand = this.directions[Math.floor(Math.random()*8)];
+    if (this.options.grid === 'diagonal') rand = this.directions[Math.floor(Math.random()*8)+4];
     var newX = this.currentX + rand[0];
     var newY = this.currentY + rand[1];
-    if (newX > this.options.width+this.options.grid || newY > this.options.height+this.options.grid || newX < 0-this.options.grid || newY < 0-this.options.grid) return;
+    if (newX > window.innerWidth + this.options.lineLength || newY > window.innerHeight + this.options.lineLength || newX < 0 - this.options.lineLength || newY < 0 - this.options.lineLength) return;
     this.storage.push({
         id: this.lineCount,
         x1: this.currentX,

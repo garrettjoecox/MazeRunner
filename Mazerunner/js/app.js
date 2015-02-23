@@ -1,46 +1,43 @@
 var options = {
-    // Grid size
-    grid: 25,
-    // Toggles diagonal line drawing
-    diagonalLines: true,
-    // Canvas size
-    height: window.innerHeight,
-    width: window.innerWidth,
+    // 'square', 'diagonal', or 'both'
+    grid: 'both',
     // Speed of new lines
     speed: 1,
-    // Toggles random line colors
-    randomColor: true,
-    // Minimum brightness of random colors
-    randomBrightness: 100,
-    // Color of lines when random is disabled (RGB or Hex)
-    lineColor: 'white',
+    // Length of each line
+    lineLength: 25,
+    // Color of lines
+    lineColor: 'red',
     // Opacity of lines (0 to 1)
-    lineOpacity: '1',
-    // Boolean for line fade
+    lineOpacity: 1,
+    // Toggles line fading
     lineFade: true,
     // Amount of lines before fade
-    lineFadeDelay: 100
+    lineFadeDelay: 50,
+    // Toggles random line colors (overwrites color)
+    randomColor: true,
+    // Minimum brightness of random colors
+    randomBrightness: 100
 };
 
-// The commented out lines below is how to create more instances of lines
-// You can even make seperate options objects and pass in different options for each line
+// Draws a new line with the options set above
+new Line(options);
 
+/// Duplicates the options object
 // var options2 = Object.create(options);
-// options2.diagonalLines = false;
-// options2.randomColor = false;
+// Changing properties on the new options object
 // options2.lineColor = 'white';
-// options2.lineOpacity = '0.5';
+// options2.randomColor = false;
+// options2.lineOpacity = 0.25;
+// options2.lineFadeDelay = 100;
+// Draws a new line with the new options
+// new Line(options2);
 
-var line = new Line(options);
-// var line2 = new Line(options2);
+/* Clock Logic */
+setTime();
 
 setInterval(function(){
-    line.populate();
-    line.draw();
-    // line2.populate();
-    // line2.draw();
     setTime();
-}, options.speed);
+}, 60000);
 
 function setTime(){
     var time = moment(Date.now()).format('h:mm');
