@@ -1,6 +1,6 @@
 var options = {
     // 'square', 'diagonal', or 'both'
-    grid: 'dsa',
+    grid: 'square',
     // Speed of new lines
     speed: 1,
     // Number of lines drawn per tick
@@ -16,7 +16,7 @@ var options = {
     // Amount of lines before fade
     lineFadeDelay: 100,
     // Toggles random line colors (overwrites color)
-    randomColor: true,
+    randomColor: false,
     // Minimum brightness of random colors
     randomBrightness: 100,
     // Path detection
