@@ -1,6 +1,6 @@
 var options = {
     // 'square', 'diagonal', or 'both'
-    grid: 'square',
+    grid: 'diagonal',
     // Speed of new lines
     speed: 1,
     // Number of lines drawn per tick
