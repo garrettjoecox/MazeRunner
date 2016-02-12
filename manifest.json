@@ -1,11 +1,26 @@
 {
   "manifest_version": 2,
 
-  "name": "CustomTab",
-  "description": "This extension replaces the new tab page whatever you want! Check the README",
-  "version": "0.1",
+  "name": "MazeRunner",
+
+  "description": "This extension replaces the new tab with a customizable line drawing animation",
+  
+  "version": "0.2",
+
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  },
+
+  "permissions": [
+    "storage"
+  ],
 
   "chrome_url_overrides" : {
     "newtab": "index.html"
+  },
+
+  "icons": {
+    "128": "ico.png"
   }
 }

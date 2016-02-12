@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Test Extension Options</title>
+  <style>
+    body { padding: 1rem; margin: 0; }
+    h3 { margin: 0; }
+    .option { margin: 0.5rem; }
+    .row { display: flex; }
+    .col { display: flex; flex-flow: column; }
+    .f1 { flex: 1; }
+    .aic { align-items: center; }
+    button { cursor: pointer; }
+  </style>
+</head>
+<body class="col">
+  <div class="option row aic">
+    <h3>Line Fade</h3>
+    <div class="f1"></div>
+    <input id="fade" type="checkbox">
+  </div>
+  <div class="option row aic">
+    <h3>Line Fade Delay</h3>
+    <div class="f1"></div>
+    <input id="delay" type="number">
+  </div>
+  <div class="option row aic">
+    <h3>Lines per Tick</h3>
+    <div class="f1"></div>
+    <input id="lpt" type="number">
+  </div>
+  <div class="option row aic">
+    <h3>Speed</h3>
+    <div class="f1"></div>
+    <input id="speed" type="number">
+  </div>
+  <div class="option row aic">
+    <h3>Grid Type</h3>
+    <div class="f1"></div>
+    <select id="grid">
+      <option value="square">Square</option>
+      <option value="diagonal">Diagonal</option>
+      <option value="both">Both</option>
+    </select>
+  </div>
+  <div class="option row aic">
+    <h3>Length</h3>
+    <div class="f1"></div>
+    <input id="length" type="number">
+  </div>
+  <div class="option row aic">
+    <h3>Random Colors</h3>
+    <div class="f1"></div>
+    <input id="random" type="checkbox">
+  </div>
+  <div class="option row aic">
+    <h3>Color</h3>
+    <div class="f1"></div>
+    <input id="color" type="text">
+  </div>
+  <div class="option row aic">
+    <h3>Random Color Brightness</h3>
+    <div class="f1"></div>
+    <input id="brightness" type="number">
+  </div>
+  <div id="status"></div>
+  <button id="save" class="option">Save</button>
+  <script src="options.js"></script>
+</body>
+</html>

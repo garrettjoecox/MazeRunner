@@ -9,5 +9,4 @@ Check the box that says "Developer Mode"
 
 You should now see a button that says "Load unpacked extension..."
 
-Click it, and select the root folder of CustomTab to enable it.
-
+Click it, and select the root folder of MazeRunner to enable it.
