@@ -1,17 +1,29 @@
-document.addEventListener('DOMContentLoaded', () => {
-  chrome.storage.sync.get({
+document.addEventListener('DOMContentLoaded', function () {
+  var ext = window.chrome || window.browser;
+  var defaultOptions = {
     fade: true,
     delay: 1000,
     lpt: 100,
-    speed: 1,
     grid: 'diagonal',
-    length: 20,
+    length: 5,
     color: '#FFFFFF',
     random: true,
     brightness: 100
-  }, options => new Line(document.querySelector('#canvas'), options));
+  }
 
-  document.querySelector('#button').addEventListener('click', () => chrome.runtime.openOptionsPage());
+  if (ext) {
+    ext.storage.sync.get(defaultOptions, function (options) {
+      new Line(document.querySelector('#canvas'), options);
+    });
+
+    document.querySelector('#button').addEventListener('click', function () {
+      ext.runtime.openOptionsPage();
+    });
+  } else {
+    new Line(document.querySelector('#canvas'), defaultOptions);
+
+    document.querySelector('#button').style.display = 'none';
+  }
 });
 
 function Line(canvas, options) {
@@ -81,17 +93,17 @@ Line.prototype.step = function() {
 Line.prototype.render = function() {
   var self = this;
   self.ctx.clearRect(0, 0, self.canvas.width, self.canvas.height);
-  self.nodes.forEach(node => {
+  self.nodes.forEach(function (node) {
     self.ctx.beginPath();
     self.ctx.strokeStyle = node.color;
     self.ctx.moveTo(node.x1, node.y1);
     self.ctx.lineTo(node.x2, node.y2);
     self.ctx.stroke();
   });
-  requestAnimationFrame(() => {
+  requestAnimationFrame(function () {
     for (var i = 0; i < self.options.lpt; i++) {
       self.step();
     }
     self.render();
   });
-}; 
+};

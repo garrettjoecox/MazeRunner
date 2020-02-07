@@ -1,26 +1,26 @@
 {
-  "manifest_version": 2,
-
   "name": "MazeRunner",
-
+  "version": "0.3",
   "description": "This extension replaces the new tab with a customizable line drawing animation",
-  
-  "version": "0.2",
-
   "options_ui": {
     "page": "options.html",
-    "chrome_style": true
+    "chrome_style": true,
+    "browser_style": true
   },
-
   "permissions": [
     "storage"
   ],
-
   "chrome_url_overrides" : {
     "newtab": "index.html"
   },
-
   "icons": {
     "128": "ico.png"
-  }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{052bb338-cc59-4b0c-82cb-2dcafcdb97d9}",
+      "strict_min_version": "54.0"
+    }
+  },
+  "manifest_version": 2
 }
