@@ -2,7 +2,7 @@ body {
   overflow: hidden;
   min-width: 100vw;
   min-height: 100vh;
-  background-color: rgb(50, 50, 52);
+  background-color: #323234;
   padding: 0;
   margin: 0;
   display: flex;
@@ -13,6 +13,7 @@ body {
 }
 
 #button {
+  display: none;
   position: absolute;
   bottom: 0;
   right: 0;

@@ -2,15 +2,20 @@ var ext = window.chrome || window.browser;
 
 (function () {
   ext.storage.sync.get({
+    backgroundColor: '#323234',
+    randomOptions: false,
     fade: true,
-    delay: 1000,
+    delay: 10000,
     lpt: 100,
-    grid: 'diagonal',
-    length: 5,
-    color: '#FFFFFF',
-    random: true,
-    brightness: 100
+    grid: 'square',
+    length: 30,
+    color: 'rgba(0,0,0,0.1)',
+    random: false,
+    brightness: 100,
+    showOptionsButton: false
   }, function (options) {
+    qs('#backgroundColor').value = options.backgroundColor;
+    qs('#randomOptions').checked = options.randomOptions;
     qs('#fade').checked = options.fade;
     qs('#delay').value = options.delay;
     qs('#lpt').value = options.lpt;
@@ -19,11 +24,14 @@ var ext = window.chrome || window.browser;
     qs('#color').value = options.color;
     qs('#random').checked = options.random;
     qs('#brightness').value = options.brightness;
+    qs('#showOptionsButton').checked = options.showOptionsButton;
   });
 })();
 
-qs('#save').addEventListener('click', function () {
+qs('#form').addEventListener('input', function () {
   ext.storage.sync.set({
+    backgroundColor: qs('#backgroundColor').value,
+    randomOptions: qs('#randomOptions').checked,
     fade: qs('#fade').checked,
     delay: +qs('#delay').value,
     lpt: +qs('#lpt').value,
@@ -32,15 +40,8 @@ qs('#save').addEventListener('click', function () {
     color: qs('#color').value,
     random: qs('#random').checked,
     brightness: +qs('#brightness').value,
-  }, function () {
-    var s = qs('#save');
-    s.innerHTML = 'Options Saved.';
-    s.disabled = true;
-    setTimeout(function () {
-      s.innerHTML = 'Save';
-      s.disabled = false;
-    }, 1000);
-  });
+    showOptionsButton: qs('#showOptionsButton').checked
+  }, function () {});
 });
 
 function qs(query) {

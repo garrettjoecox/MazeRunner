@@ -1,28 +1,44 @@
 document.addEventListener('DOMContentLoaded', function () {
   var ext = window.chrome || window.browser;
   var defaultOptions = {
+    backgroundColor: '#323234',
+    randomOptions: false,
     fade: true,
-    delay: 1000,
+    delay: 10000,
     lpt: 100,
-    grid: 'diagonal',
-    length: 5,
+    grid: 'square',
+    length: 30,
+    color: 'rgba(0,0,0,0.1)',
+    random: false,
+    brightness: 100,
+    showOptionsButton: false
+  }
+
+  var randomOptions = {
+    fade: getRandomItem([true, true, true, false]),
+    delay: getRandomInt(500, 10000),
+    lpt: getRandomInt(1, 100),
+    grid: getRandomItem(['square', 'diagonal', 'both']),
+    length: getRandomInt(2, 40),
     color: '#FFFFFF',
-    random: true,
+    random: getRandomItem([true, false]),
     brightness: 100
   }
 
   if (ext) {
     ext.storage.sync.get(defaultOptions, function (options) {
-      new Line(document.querySelector('#canvas'), options);
+      document.body.style.backgroundColor = options.backgroundColor;
+      new Line(document.querySelector('#canvas'), options.randomOptions ? randomOptions : options);
+      if (options.showOptionsButton) {
+        document.querySelector('#button').style.display = 'block';
+      }
     });
 
     document.querySelector('#button').addEventListener('click', function () {
       ext.runtime.openOptionsPage();
     });
   } else {
-    new Line(document.querySelector('#canvas'), defaultOptions);
-
-    document.querySelector('#button').style.display = 'none';
+    new Line(document.querySelector('#canvas'), randomOptions);
   }
 });
 
@@ -83,7 +99,7 @@ Line.prototype.step = function() {
       color: color
     });
 
-    if (self.options.fade && self.nodes.length > self.options.delay) self.nodes.shift();
+    if ((self.options.fade && self.nodes.length > self.options.delay) || (!self.options.fade && self.nodes.length > self.options.lpt)) self.nodes.shift();
 
     self.currentX = newX;
     self.currentY = newY;
@@ -92,7 +108,7 @@ Line.prototype.step = function() {
 
 Line.prototype.render = function() {
   var self = this;
-  self.ctx.clearRect(0, 0, self.canvas.width, self.canvas.height);
+  if (self.options.fade) self.ctx.clearRect(0, 0, self.canvas.width, self.canvas.height);
   self.nodes.forEach(function (node) {
     self.ctx.beginPath();
     self.ctx.strokeStyle = node.color;
@@ -107,3 +123,13 @@ Line.prototype.render = function() {
     self.render();
   });
 };
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getRandomItem(array) {
+  return array[getRandomInt(0, array.length - 1)];
+}
